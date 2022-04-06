@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+app.get('/', (req, res) => {
+  res.send("Empty homepage");
+});
 
 app.get('/tasks', (req, res) => {
   res.send("Checking all tasks");
@@ -15,10 +18,14 @@ app.get('/tasks/:status', (req, res) => {
 });
 
 app.post('/tasks', (req, res) => {
-  res.send("Posting task");
+  res.send("Posting new task");
 });
 
-app.delete('/tasks(:id', (req, res) => {
+app.delete('/tasks/:id', (req, res) => {
+  res.send("Delete task by id");
+});
+
+app.delete('/tasks/:status', (req, res) => {
   res.send("Posting task");
 });
 
