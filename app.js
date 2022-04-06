@@ -13,20 +13,20 @@ app.get('/tasks/:id', (req, res) => {
   res.send("Checking tasks by id");
 });
 
-app.get('/tasks/:status', (req, res) => {
-  res.send("Checking tasks by status");
+app.get('/tasks/pending', (req, res) => {
+  res.send("Checking only pending tasks");
 });
 
 app.post('/tasks', (req, res) => {
-  res.send("Posting new task");
+  res.send("Posting a new task");
 });
 
 app.delete('/tasks/:id', (req, res) => {
   res.send("Delete task by id");
 });
 
-app.delete('/tasks/:status', (req, res) => {
-  res.send("Posting task");
+app.delete('/tasks/completed', (req, res) => {
+  res.send("Deleting all completed tasks");
 });
 
 const port = 3000;
