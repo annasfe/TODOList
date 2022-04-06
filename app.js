@@ -2,11 +2,11 @@ const express = require('express');
 const app = express();
 
 app.get('/tasks', (req, res) => {
-  res.send("Checking all tasks");
+  res.send("Loading all tasks");
 });
 
 app.get('/tasks/:id', (req, res) => {
-  res.send("Checking tasks by id");
+  res.send("Checking only task with this id");
 });
 
 app.get('/tasks/pending', (req, res) => {
