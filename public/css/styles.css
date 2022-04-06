@@ -1,3 +1,156 @@
+:root {
+    --col-light: rgb(247, 253, 251);
+    --col-dark: rgb(44, 44, 44);
+    --col-accent: #f0e224;
+    --col-gradient: linear-gradient(120deg, #8397b6, #294aa7);
+    --font-primary: Helvetica, sans-serif;
+    --font-title: Cambria, serif;
+}
+
+*,
+* ::after,
+* ::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background-color: aqua;
+    font-family: var(--font-primary);
+    padding: 0 20vw;
+    font-size: 1rem;
+    background-image: var(--col-light);
+}
+
+h1 {
+    font-family: var(--font-title);
+    color: var(--col-dark);
+    font-size: 3rem;
+    margin: 2rem 0;
+}
+
+hr {
+    width: 100%;
+    border: 1px solid var(--col-accent);
+    margin-bottom: 2rem;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+form input,
+form button {
+    font-size: 2.5rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--col-accent);
+}
+
+form input {
+    margin-right: 0.5rem;
+    width: 90%;
+}
+
+form input:focus {
+    outline: none;
+    border: 2px solid var(--col-dark);
+}
+
+form button {
+    width: 10%;
+}
+
+form button:hover {
+    background-color: var(--col-dark);
+    color: var(--col-accent);
+}
+
+input[type=checkbox] {
+    margin-right: 1rem;
+}
+
+input[type=checkbox]:checked {
+    filter: invert(100%) hue-rotate(18deg) brightness(1.5);
+}
+
+input[type=checkbox]:checked~span {
+    text-decoration: line-through;
+}
+
+.todo-container {
+    display: flex;
+}
+
+.todo-list {
+    list-style: none;
+    width: 100%;
+    /* I need to delete bullets and to make long item dark rect */
+}
+
+.todo {
+    margin: 0.5rem 0;
+    background-color: var(--col-dark);
+    border-radius: 10px;
+    border: none;
+    color: var(--col-accent);
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.todo-item {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.listBtn {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
+
+.listBtn:hover {
+    cursor: pointer;
+}
+
+i {
+    position: absolute;
+    right: 15px;
+}
+
+/* Responsive Design for small screens */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 0 10vw;
+    }
+
+    form button {
+        width: auto;
+    }
+
+    form input,
+    form button {
+        font-size: 1.5rem;
+        padding: 0.3rem;
+    }
+
+
+    h1 {
+        font-size: 2rem;
+        margin: 1.5rem 0;
+    }
+
+    .todo-item {
+        padding: 0.3rem;
+        font-size: 1.4rem;
+    }
+
 }
