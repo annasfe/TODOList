@@ -1,34 +1,40 @@
-const port = 8888;
-const express = require("express");
-const app = express();
+const express = require('express')
+const app = express()
+const hostname = 'localhost';
+const port = process.env.PORT || 3000;
 
-let checkList = "localhost:3000";
 
-app.get("/tasks", (req, res) => {
-  res.sendFile(__dirname + `/index.html`);
-});
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`)
+  })
 
-app.route("/tasks/:id");
-app.get("/", (req, res) => {
-  res.send(`<p>${`this is the ${res.body.id} task`}</p>`);
-});
 
-app.put("/tasks", (req, res) => {
-  res.send(`<p>Update ${res.body.id} task</p>`);
-});
+app.route('/tasks')
+    .get((req, res) => {
+    res.send(`<html> <head> <title> Todo List </title> </head> <body><h1>All the tasks</h1>`)
+})
 
-app.post("/tasks/:id", (req, res) => {
-  res.send(`<h1>Add a new task called ${res.body.id}</h1>`);
-});
+    .post((req, res) => {
+    console.log(req.body.task)
+    res.send('New task received, thanks!');
+ })
 
-app.delete("/tasks/:ID", (req, res) => {
-  res.send(`<h1>Delete ${res.body.id} task</h1>`);
-});
 
-app.listen(port, "localhost", (err) => {
-  if (err) {
-    return;
-  } else {
-    console.log(`Server running on port ${port}`);
-  }
-});
+ 
+ app.route('/tasks/:id')
+ 
+    .get((req, res) => {
+    let id = req.params.id
+    res.send(`<html> <head> <title> Todo List</title> </head> <body><h1>/This is task ${id}</h1>`)
+ })
+    .put((req, res) => {
+    let id = req.params.id
+    res.send(`<html> <head> <title> Todo List</title> </head> <body><h1>/Modified task ${id}</h1>`)
+ })
+ 
+    .delete((req, res) => {
+    let id = req.params.id
+    res.send(`<html> <head> <title> Todo List</title> </head> <body><h1>/Deleted task ${id}</h1>`)
+     })
+
+
