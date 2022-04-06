@@ -1,10 +1,6 @@
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send("Empty homepage");
-});
-
 app.get('/tasks', (req, res) => {
   res.send("Checking all tasks");
 });
