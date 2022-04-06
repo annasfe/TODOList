@@ -21,12 +21,12 @@ app.post('/tasks', (req, res) => {
   res.send("Posting a new task");
 });
 
-app.delete('/tasks/:id', (req, res) => {
-  res.send("Delete task by id");
+app.delete('/tasks/completed/', (req, res) => {
+  res.send("Deleting all completed tasks");
 });
 
-app.delete('/tasks/completed', (req, res) => {
-  res.send("Deleting all completed tasks");
+app.delete('/tasks/:id', (req, res) => {
+  res.send("Deleting task with this id");
 });
 
 const port = 3000;
