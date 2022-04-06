@@ -1,5 +1,17 @@
 const express = require('express');
 const app = express();
+const ejs = require('ejs');
+
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.static('public')); //set were my public files are
+
+app.set('view engine', 'ejs');
+
+app.get('/', (req, res) => {
+  res.render('index', {foo: 'FOO'}) //'index' means index.ejs page
+  res.send("Homepage testing");
+});
 
 app.get('/tasks', (req, res) => {
   res.send("Loading all tasks");
