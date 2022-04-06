@@ -1,41 +1,32 @@
+//requiring modules
 const express = require('express');
-const app = express();
 const ejs = require('ejs');
 
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.static('public')); //set were my public files are
+const app = express(); //creating server
 
+let items = []; //create an empty array for the list items
+
+//some stuff I dunno
+app.use(express.static('public')); //set where my public files are
 app.set('view engine', 'ejs');
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 
+
+//when I load the homepage, load index.ejs
 app.get('/', (req, res) => {
-  res.render('index', {foo: 'FOO'}) //'index' means index.ejs page
-  res.send("Homepage testing");
+  res.render('index', {newListItems: items}); //'index' means index.ejs page
 });
 
-app.get('/tasks', (req, res) => {
-  res.send("Loading all tasks");
+//when I press submit button, parse newItem value and assign to item var, then push item inside items array
+app.post('/', (req, res) => {
+  let item = req.body.newItem;
+  items.push(item);
+  console.log(item);
+  res.redirect('/');
 });
 
-app.get('/tasks/:id', (req, res) => {
-  res.send("Checking only task with this id");
-});
 
-app.get('/tasks/pending', (req, res) => {
-  res.send("Checking only pending tasks");
-});
-
-app.post('/tasks', (req, res) => {
-  res.send("Posting a new task");
-});
-
-app.delete('/tasks/completed/', (req, res) => {
-  res.send("Deleting all completed tasks");
-});
-
-app.delete('/tasks/:id', (req, res) => {
-  res.send("Deleting task with this id");
-});
 
 
 // SERVER RUNNING ON PORT 3000...

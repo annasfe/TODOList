@@ -8,14 +8,15 @@
 </head>
 <body>
     <h1>MY TO DO LIST</h1>
-    <ul>
-        <li>New Item</li>
+    <ul> 
+        <% for (let i = 0; i < newListItems.length; i++){ %>
+           <li><%= newListItems[i] %></li> 
+        <%  } %>
     </ul>
 
     <form action="/" method="post">
-        <input type="text" new="newItem">
+        <input type="text" name="newItem">
         <button type="submit" name="button">Add</button>
-
     </form>
 </body>
 </html>
