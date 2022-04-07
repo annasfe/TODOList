@@ -1,15 +1,18 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+
+
+const ejs = require('ejs');
 app.use(express.json());
+app.set('view engine', 'ejs');
 
 const portName = 'localhost';
 const port = process.env.PORT || 3000;
-
-const ejs = require('ejs');
-const { status } = require('express/lib/response');
-app.set('view engine', 'ejs');
-
-
 
 //tasks array
 const allTheTasks = [];
@@ -45,7 +48,7 @@ app.route('/tasks')
       
  })
 
-let currentTasks = 
+
 
 
 

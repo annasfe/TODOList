@@ -5,28 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo List</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Roboto:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>ToDo List</h1>
+    <div class="container">
     <form method="post" action="">
+        <div class="add-task">
         <label for="task"></label>
         <input type="text" name="task" placeholder="your task here">
         <button id="new-task">+</button>
-        <label for="select-category">Select a category</label>
+    </div>
+    <div class="task-custom">
+        <label for="select-category">
         <select name="select-category">
-            <option></option>
+            <option selected>Select a category</option>
             <option>Work</option>
             <option>Home</option>
             <option>Pet</option>
             <option>Important</option>
             <option>Others</option>
-        </select>
-        <input type="checkbox" id="check-status" value="completed"> <label for="check-status">Completed</label>
+        </select></label>
+        <button id="delete">-</button>
         
-       
+    </div>
 
 
     </form>
+</div>
     <ul>
         
         <% for(var i = 0; i <allTheTasks.length; i++){ %>

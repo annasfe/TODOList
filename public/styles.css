@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family: 'Grape Nuts', cursive;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:flex-start;
+    
+}
+
+.add-task, .task-custom {
+    display: flex;
+    flex-flow: row nowrap;
+    
+    width: 100%;
+}
+.add-task input,  .add-task button {
+    background-color: black;
+    color: white;
+   
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-style: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    
+}
+
+.add-task input {
+    width: 90%;
+}
+.add-task button, .task-custom button {
+    width: 20%;  
+    
+}
+
+
+.task-custom select, .task-custom button {
+    background-color: black;
+    color: white;
+   
+    margin: 0.5rem;
+    padding: 0.5rem  0.8rem;
+    border-style: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+
+.task-custom label {
+    font-family: 'Grape Nuts', cursive;
+}
+#check-status {
+    background-color: black;
+    color: white;
+    appearance: none;
+    margin: 0.5rem;
+    padding: 0.5rem  0.8rem;
+    border-style: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+
+
+ul {
+    list-style: none;
+    font-family: 'Grape Nuts', cursive;
+    font-size: 2rem;
+}
