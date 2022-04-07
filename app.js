@@ -11,17 +11,17 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/tasks', (req, res) => {
   items = fs.readFileSync('todolist.txt').toString().split("\n");
   res.render('index', { newListItems: items}); 
 });
 
-app.post('/', (req, res) => {
+app.post('/tasks', (req, res) => {
   items.push(req.body.newItem);
   fs.appendFile('./todolist.txt', items[items.length-1] + "\n", 'utf8', function (err) {
       if (err) return console.log(err);
   });
-  res.redirect('/');
+  res.redirect('/tasks');
 });
 
 
