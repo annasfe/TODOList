@@ -1,0 +1,113 @@
+/* font-family: 'Architects Daughter', cursive;
+font-family: 'Quantico', sans-serif; */
+
+:root {
+  --russian-violet: #301a4bff;
+  --maximum-blue-purple: #9f9fedff;
+  --vermilion: #e03616ff;
+  --unbleached-silk: #ffd9ceff;
+  --snow: #fcf7f8ff;
+  /* BYOMA PALETE */
+  --BYOMA-1: #c2e5f2;
+  --BYOMA-2: #f2e399;
+  --BYOMA-3: #f2913d;
+  --BYOMA-4: #f25c05;
+  --BYOMA-5: #f24405;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  width: 400px;
+  height: 100vh;
+  background-color: var(--BYOMA-1);
+}
+h1 {
+  font-family: "Quantico", Verdana, Geneva, Tahoma, sans-serif;
+  color: var(--BYOMA-4);
+  font-size: 45px;
+  margin: 30px;
+}
+.add-btn {
+  border-radius: 10px;
+  background-color: var(--BYOMA-3);
+  color: var(--BYOMA-2);
+  font-weight: 200;
+}
+
+.input {
+  background-color: var(--snow);
+  color: var(--BYOMA-3);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.tasks-list {
+  margin: 0;
+  padding: 0;
+}
+.task {
+}
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--BYOMA-3);
+  background-color: var(--BYOMA-2);
+  width: 300px;
+  height: 50px;
+  border-radius: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  list-style: none;
+  margin: 10px;
+  padding: 10px;
+}
+.check-list {
+  color: var(--BYOMA-4);
+  text-decoration: line-through;
+  font-style: italic;
+}
+.check-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--BYOMA-3);
+  border-radius: 10px;
+  color: var(--BYOMA-2);
+  margin: 0 2px;
+  height: 30px;
+  width: 30px;
+}
+.delete-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--BYOMA-3);
+  border-radius: 10px;
+  color: var(--BYOMA-2);
+  margin: 0 2px;
+  height: 30px;
+  width: 30px;
+}
+.check-list-btn {
+  color: var(--BYOMA-4);
+}
+.tasks-container {
+  margin: 0;
+}
+
+.buttons {
+  display: flex;
+}
+
+.fa-solid.fa-square-check.fa-solid.fa-trash-can {
+  color: var(--maximum-blue-purple);
+}
