@@ -27,7 +27,7 @@ app.post('/', (req, res) => {
 
 // SERVER RUNNING ON PORT 3000...
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 const hostname = 'localhost';
 
 app.listen(port, hostname, (err) => {
