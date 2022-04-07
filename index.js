@@ -16,7 +16,6 @@ app.listen(port, hostName, (err) => {
     else console.log(`Server running on port ${port}...`);
 })
 
-
 //Database
 // let taskDatabaseJSON = [] 
 const taskDatabaseJSON = fs.readFileSync('public/storage.json')
