@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+</head>
+<body>
+    <h1>ToDo List</h1>
+    <form method="post" action="">
+        <label for="task"></label>
+        <input type="text" name="task" placeholder="your task here">
+        <button id="new-task">+</button>
+        <label for="select-category">Select a category</label>
+        <select name="select-category">
+            <option></option>
+            <option>Work</option>
+            <option>Home</option>
+            <option>Pet</option>
+            <option>Important</option>
+            <option>Others</option>
+        </select>
+        <input type="checkbox" id="check-status" value="completed"> <label for="check-status">Completed</label>
+        
+       
+
+
+    </form>
+    <ul>
+        
+        <% for(var i = 0; i <allTheTasks.length; i++){ %>
+            
+                
+                <li> <%= allTheTasks[i] %> </li>
+            
+        <% } %>
+    </ul>
+</body>
+</html>

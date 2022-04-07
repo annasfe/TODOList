@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
-
 app.use(express.json());
+
 const portName = 'localhost';
 const port = process.env.PORT || 3000;
 
+const ejs = require('ejs');
+const { status } = require('express/lib/response');
+app.set('view engine', 'ejs');
 
 
 
@@ -21,16 +24,20 @@ class TaskCreator {
     }
 }
 
-const task = new TaskCreator(1, 'first task', 'home', 'to do');
+const task = new TaskCreator(Date.now()%10000, 'first task', 'home', 'to do');
 allTheTasks.push(task);
 
-app.route('/api/tasks')
+const allTasks = Object.assign({}, ...allTheTasks);
+
+app.route('/tasks')
     .get((req, res) => {
-      res.send(`These are all your tasks: ${getTaskContent(allTheTasks)}`);
+      
+      res.render('index', {allTheTasks: allTheTasks});
+      
       console.log(allTheTasks);
    })
     .post((req, res) => {
-      let newId = allTheTasks.length+1;
+      let newId = Date.now()%10000;
       const task = new TaskCreator(newId, req.body.content, req.body.category, req.body.status);
     
       allTheTasks.push(task);
@@ -38,8 +45,11 @@ app.route('/api/tasks')
       
  })
 
+let currentTasks = 
 
-app.route('/api/tasks/:id')
+
+
+app.route('/tasks/:id')
    .get((req, res) => {
       const reqTask = allTheTasks.filter(item => item.id === parseInt(req.params.id));
       if(reqTask != false) {res.send(`This is task ${req.params.id}: ${reqTask[0]}`);}
@@ -52,7 +62,7 @@ app.route('/api/tasks/:id')
          reqTask[0].content = req.body.content;
          reqTask[0].category = req.body.category;
          reqTask[0].status = req.body.status;
-         res.send(`Task ${req.params.id} changed to: ${reqTask[0]}`);
+         res.send(`Task ${req.params.id} changed to: (JSON.stringify(${reqTask[0]},null,2)`);
       } else {res.send(`There is not a task with ${req.params.id} id.`);}
     
  })
