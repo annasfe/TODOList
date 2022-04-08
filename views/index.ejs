@@ -7,43 +7,56 @@
     <title>ToDo List</title>
     <link rel="stylesheet" href="/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Roboto:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>ToDo List</h1>
     <div class="container">
-    <form method="post" action="">
+    <form method="post" action="/tasks">
         <div class="add-task">
         <label for="task"></label>
         <input type="text" name="task" placeholder="your task here">
         <button id="new-task">+</button>
     </div>
     <div class="task-custom">
-        <label for="select-category">
-        <select name="select-category">
-            <option selected>Select a category</option>
-            <option>Work</option>
-            <option>Home</option>
-            <option>Pet</option>
-            <option>Important</option>
-            <option>Others</option>
+        <label for="selectcategory">
+        <select name="selectcategory">
+            <% for(var i = 0; i < categoriesArr.length; i++){ %>
+             
+                <option>
+                    <%= categoriesArr[i] %> 
+                        
+                   
+                        
+            </option>
+                
+            <% } %>
         </select></label>
-        <button id="delete">-</button>
+    </form>
+        <button formaction="/tasks" id="delete-completed">delete completed</button>
+        <button formaction="/tasks" id="delete-all">delete all</button>
         
     </div>
 
 
-    </form>
+    
 </div>
+<div class="list">
     <ul>
         
         <% for(var i = 0; i <allTheTasks.length; i++){ %>
-            
-                
-                <li> <%= allTheTasks[i] %> </li>
+             
+            <li title="Task Id: <%= allTheTasks[i].id %>">
+                <span style= "color: #A3F79E;"" > <%= allTheTasks[i].emoji %> </span> 
+                <%= allTheTasks[i].content %> 
+                    
+                    <input type="checkbox" name="chkStatus" value="<%=allTheTasks[i].status%>">
+                    
+            </li>
             
         <% } %>
     </ul>
+</div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 }
 
 h1 {
-    font-family: 'Grape Nuts', cursive;
+    font-family: 'Roboto', sans-serif;
 }
 .container {
     display: flex;
@@ -16,60 +16,67 @@ h1 {
 .add-task, .task-custom {
     display: flex;
     flex-flow: row nowrap;
-    
     width: 100%;
 }
 .add-task input,  .add-task button {
-    background-color: black;
-    color: white;
-   
-    margin: 0.5rem;
+    background-color: #A3F79E;
+    color: black;
+    appearance: none;
+    border-color: transparent;
+    margin: 0.3rem;
     padding: 0.5rem;
     border-style: none;
     padding: 0.5rem;
-    border-radius: 5px;
+    
+    outline: none;
     
 }
 
 .add-task input {
-    width: 90%;
+    width: 300px;
 }
-.add-task button, .task-custom button {
-    width: 20%;  
+.add-task button {
+    width: 70px;
+}
+.task-custom button {
+    width: 60px;  
+    font-size: 0.6rem;
+  
     
 }
 
 
 .task-custom select, .task-custom button {
-    background-color: black;
-    color: white;
-   
-    margin: 0.5rem;
+    background-color: #A3F79E;
+    color: black;
+    outline: none;
+    margin: 0.3rem;
     padding: 0.5rem  0.8rem;
     border-style: none;
     padding: 0.5rem;
-    border-radius: 5px;
+    
+}
+.task-custom select {
+    width: 240px;
 }
 
-
-.task-custom label {
-    font-family: 'Grape Nuts', cursive;
+.list {
+    margin-top: 8rem;
+    margin-left: 0;
 }
-#check-status {
-    background-color: black;
-    color: white;
-    appearance: none;
-    margin: 0.5rem;
-    padding: 0.5rem  0.8rem;
-    border-style: none;
-    padding: 0.5rem;
-    border-radius: 5px;
-}
-
 
 
 ul {
+    padding: 0;
     list-style: none;
-    font-family: 'Grape Nuts', cursive;
-    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    margin-left: 0;
+}
+
+
+
+.one-task-list {
+    margin-top: 2rem;
+    margin-left: 5rem;
 }
