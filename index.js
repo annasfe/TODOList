@@ -8,16 +8,17 @@ app.use(express.static("public"));
 app.set('view engine', 'ejs');
 
 var task = [{id:1, text: "buy socks", completed: false}, {id:2, text:"practise with nodejs", completed:true}];
+var complete = [];
 let counter = 2;
 
-app.post('/addtask', function (req, res) {
+app.post('/tasks', function (req, res) {
     counter++;
     var newTask = {id: counter, text: req.body.newtask, completed: req.body.completed};
     task.push(newTask);
     res.redirect("/");
 });
 
-app.post('/removetask', function(req, res) {
+app.post('/tasks/remove', function(req, res) {
     var completeTask = req.body.check;
     if (typeof completeTask === "string") {
         complete.push(completeTask);
@@ -33,6 +34,10 @@ app.post('/removetask', function(req, res) {
     res.redirect("/");
 });
 
+app.post('/tasks/deleteall', function (req, res) {
+    //empty the array
+    res.redirect("/");
+});
 
 app.get('/', function (req, res) {
     res.render("index", { task: task, complete: complete});

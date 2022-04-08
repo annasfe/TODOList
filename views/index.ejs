@@ -5,21 +5,31 @@
     <link href="/styles.css" rel="stylesheet">
   </head>
 <body>
+
   <div class="container">
-<h2> A Simple ToDo List App </h2>
-<form action ="/addtask" method="POST">
-       <input type="text" name="newtask" placeholder="add new task">        
-       <button> Add Task </button>
-<h2> Added Task </h2>
-   <% for( var i = 0; i < task.length; i++){ %>
-<li><input type="checkbox" name="check" value="<%= task[i] %>" /> <%= task[i] %> </li>
-<% } %>
-<button formaction="/removetask" type="submit"> Remove </button>
-</form>
-<h2> Completed task </h2>
-    <% for(var i = 0; i < complete.length; i++){ %>
-      <li><input type="checkbox" checked><%= complete[i] %> </li>
-<% } %>
+    <h2> A Simple ToDo List App </h2>
+    <form action ="/tasks" method="POST">
+          <input type="text" name="newtask" placeholder="add new task">        
+          <button type="submit"> Add Task </button>
+    </form>
+
+
+
+    <h2> Added Task </h2>
+    <form action="/tasks/remove" method="POST">
+    <ul>
+      <% for( var i = 0; i < task.length; i++){ %>
+          <li><input type="checkbox" name="check" value="<%= task[i].id %>" /> <%= task[i].text %> </li>
+      <% } %>
+      </ul>
+    <button type="submit"> Remove </button>
+  </form>
+
+  <form action="/tasks/deleteall" method="POST">
+    <button type="submit">Delete all</button>
+  </form>
+
+
 </div>
 </body>
 </html>
