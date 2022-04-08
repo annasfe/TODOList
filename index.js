@@ -16,12 +16,16 @@ app.post('/tasks', function (req, res) {
 });
 
 app.post('/tasks/remove', function(req, res) {
-    console.log(task)
+
     var completeTask = req.body.check;
 
+    //TODO: REFACTOR - find some more clever way that the double for, maybe filter or reduce
     if(completeTask.length) {
         for (var i = 0; i < completeTask.length; i++) {
-            //remove all elements of the task array with the specified ids    
+            for(var j=0; j<task.length; j++) {
+                if(parseInt(completeTask[i]) === task[j].id)
+                    task.splice(j,1);
+            }
         }
     }
 
