@@ -1,58 +1,34 @@
 const port = process.env.PORT || 3000;
 const express = require("express");
 const app = express();
-const path = require("path");
+const tasksController = require("./controllers/tasks.js");
+const router1 = require("./routes/tasks");
+const router2 = require("./routes/task");
+const router3 = require("./routes/newTask");
+
 app.use(express.json());
 app.use(express.static("public"));
-const tasks = [
-  { id: 1, description: "clean the floor" },
-  { id: 2, description: "make dinner" },
-  { id: 3, description: "buy tickets" },
-];
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
+tasks = [];
 
-app.get("/tasks", (req, res) => {
-  res.send(tasks);
-});
+app.use;
+"/task", router2;
+app.use;
+"/tasks", router1;
+app.use;
+"/newTask", router3;
 
-app.get("/task/:id", (req, res) => {
-  const task = tasks.find((c) => c.id === parseInt(req.params.id));
-  if (!tasks) {
-    res.status(404).send("The task with the given ID does not exist.");
-    res.sendStatus(task);
-  }
-});
+app.get("/", tasksController.loadList);
 
-app.post("/new-task", (req, res) => {
-  const task = {
-    id: tasks.length + 1,
-    description: req.body.description,
-  };
+app.get("/tasks", tasksController.getTasks);
 
-  tasks.push(task);
-  res.send(`<h3>The task ${task} was saved</h3>`);
-});
+app.get("/task/:id", tasksController.getTakByID);
 
-app.put("/task/:id", (req, res) => {
-  const task = tasks.find((c) => c.id === parseInt(req.params.id));
-  if (!task) {
-    res.status(404).send("The task with the given ID does not exist.");
-  }
-  res.send(`<h3>The task ${req.body.id} was updated</h3>`);
-  task.description = req.body.description;
-  res.send(task);
-});
+app.post("/newTask", tasksController.newTask);
 
-app.delete("/task/:id", (req, res) => {
-  const task = tasks.find((c) => c.id === parseInt(req.params.id));
-  const index = tasks.indexOf(task);
-  tasks.splice(index, 1);
+app.put("/task/:id", tasksController.checkTask);
 
-  res.send(`<h3>The task ${req.body.id} was deleted</h3>`);
-});
+app.delete("/task/:id", tasksController.deleteTask);
 
 app.listen(port, "localhost", (err) => {
   if (err) {
