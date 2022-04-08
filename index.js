@@ -16,13 +16,13 @@ app.post('/tasks', function (req, res) {
 });
 
 app.post('/tasks/remove', function(req, res) {
+    console.log(task)
     var completeTask = req.body.check;
-    console.log(req.body.check)
 
-    for (var i = 0; i < completeTask.length; i++) {
-        //TODO Check this code again, I think not properly working     
-        if(completeTask[i] === task[i].id)
-            task.splice(i, 1);
+    if(completeTask.length) {
+        for (var i = 0; i < completeTask.length; i++) {
+            //remove all elements of the task array with the specified ids    
+        }
     }
 
     res.redirect("/");
