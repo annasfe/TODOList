@@ -49,32 +49,61 @@ function createNewTask (req, res) {
 }
 
 
+
 function getTaskById (req, res) {
+    
     const reqTask = allTheTasks.filter(item => item.id === parseInt(req.params.id));
-    if(reqTask != false) {res.render('task-details', {task: reqTask[0], taskId: req.params.id});}
-    else {res.send(`There is not a task with ${req.params.id} id.`);}
-  
+    if(reqTask != false) {res.render('task-details', {task: reqTask[0], taskId: req.params.id, categoriesArr: categoriesArr});}
+    else {res.render('no-task-id', {taskId: req.params.id, categoriesArr: categoriesArr});}
+    
 }
 
 
 function modifyTask (req, res) {
-    const reqTask = allTheTasks.filter(item => item.id === parseInt(req.params.id));
+    reqTask = allTheTasks.filter(item => item.id === parseInt(req.params.id));
+    if(reqTask != false) {
+
+
+       
+       reqTask[0].content = req.body.task;
+       reqTask[0].category = req.body.selectcategory;
+       reqTask[0].status = req.body.status;
+       res.send(`Task ${req.params.id} changed to: (JSON.stringify(${reqTask[0]},null,2)`); 
+    } else {res.render('no-task-id', {taskId: req.params.id, categoriesArr: categoriesArr});}
+ 
+    
+    
+    
+    /*const reqTask = allTheTasks.filter(item => item.id === parseInt(req.params.id));
     if(reqTask != false) {
        reqTask[0].content = req.body.task;
        reqTask[0].category = req.body.selectcategory;
        reqTask[0].status = req.body.status;
        res.send(`Task ${req.params.id} changed to: (JSON.stringify(${reqTask[0]},null,2)`);
     } else {res.send(`There is not a task with ${req.params.id} id.`);}
-  
+  */
 }
 
-function deleteTask (req, res) {
-    const reqTask = allTheTasks.filter(item => item.id === parseInt(req.params.id));
-    if(reqTask != false) {
-       allTheTasks.splice(allTheTasks.indexOf(reqTask),1);
-       res.send(`Task ${req.params.id} deleted!`);
-    } else {res.send(`There is not a task with ${req.params.id} id.`);}
+
+function emptyList (req, res) {
+    if (allTheTasks.length >= 1) {
+    allTheTasks.splice(0, allTheTasks.length);
+    res.redirect('/tasks');
+    } 
 }
+
+
+
+// TO DO: delete completed tasks
+/*
+function deleteCompleted (req, res) {
+    var completeTask = req.body.check;
+    
+
+    res.send(console.log(completeTask));
+}
+*/
+
 
 
 ///////cat object //****************************************** */
@@ -82,15 +111,15 @@ function deleteTask (req, res) {
 const categories = {
     Category: "",
     Home: '\u{1F3E0}',
-    Important: '&#10071',
-    Grocery: '&#127822',
-    Care: '&#128147',
+    Important: '\u{2757}',
+    Grocery: '\u{1F34E}',
+    Care: '\u{1F493}',
     Pet: '\u{1F436}', 
-    Work: '&#128679',
-    Birthday: '&#127881;',
-    Healt: '&#128154',
-    Urgent: '&#128165',
-    Pinned: '&#128204',
+    Work: '\u{1F6A7}',
+    Birthday: '\u{1F389}',
+    Healt: '\u{1F49A}',
+    Urgent: '\u{1F4A5}',
+    Pinned: '\u{1F4CC}',
     Others: '\u{1F47E}'
 
 }
@@ -110,4 +139,4 @@ function addEmo(obj, category) {
 
 
 
-module.exports = {getAllTheTasks, createNewTask, getTaskById, modifyTask, deleteTask};
+module.exports = {getAllTheTasks, createNewTask, getTaskById, modifyTask, emptyList};

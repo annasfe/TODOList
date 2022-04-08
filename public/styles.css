@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-h1 {
+h1, h3 {
     font-family: 'Roboto', sans-serif;
 }
 .container {
@@ -79,4 +79,9 @@ ul {
 .one-task-list {
     margin-top: 2rem;
     margin-left: 5rem;
+}
+
+
+.no-task {
+    margin-top: 10rem;
 }

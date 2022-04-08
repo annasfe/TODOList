@@ -11,20 +11,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>This is your task <span style= "color: #A3F79E;"" ><%= taskId %></span></h1>
-    <div class="one-task-list">
-        <ul>
-            <li>   <span style= "color: #A3F79E;"" >category: <span title=<%= task.category %>><%= task.emoji %></span>/ content: </span> 
-        <%= task.content %><span style= "color: #A3F79E;"" > / status: <%= task.status %> </span> 
-            </li>
-        </ul>
-    </div>
+    <h1>There are no tasks here :(</h1>
+    
+    <h3 class="no-task">but you can create one...</h3>
     <div class="container">
-        <form method="put" action="/tasks">
+        <form method="post" action="/tasks">
             <div class="add-task">
-            <label for="modified-task"></label>
-            <input type="text" name="modified-task" placeholder="change task">
-            <button id="change-task">+</button>
+            <label for="task"></label>
+            <input type="text" name="task" placeholder="your task here">
+            <button id="new-task">+</button>
         </div>
         <div class="task-custom">
             <label for="selectcategory">
@@ -41,10 +36,10 @@
                 <% } %>
             </select></label>
         </form>
-            <button formaction="/tasks" id="delete-completed">delete completed</button>
-            <button formaction="/tasks" id="delete-all">delete all</button>
+           
             
         </div>
+   
     
 </body>
 </html>

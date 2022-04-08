@@ -34,8 +34,8 @@
             <% } %>
         </select></label>
     </form>
-        <button formaction="/tasks" id="delete-completed">delete completed</button>
-        <button formaction="/tasks" id="delete-all">delete all</button>
+        <button method="POST" formaction="/tasks/clearcompleted" id="delete-completed">delete completed</button>
+        <button method="POST" formaction="/tasks/clearall" id="delete-all">delete all</button>
         
     </div>
 
@@ -51,7 +51,7 @@
                 <span style= "color: #A3F79E;"" > <%= allTheTasks[i].emoji %> </span> 
                 <%= allTheTasks[i].content %> 
                     
-                    <input type="checkbox" name="chkStatus" value="<%=allTheTasks[i].status%>">
+                    <input type="checkbox" name="check" value="<%=allTheTasks[i]%>"  >
                     
             </li>
             
