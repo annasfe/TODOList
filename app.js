@@ -1,6 +1,11 @@
 const express = require('express');
 const ejs = require('ejs');
+<<<<<<< Updated upstream
 const fs = require('fs');
+=======
+const tasksRouter = require('./routes/tasks');
+const homeRouter= require ('./routes/index');
+>>>>>>> Stashed changes
 
 const app = express();
 
@@ -9,6 +14,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+<<<<<<< Updated upstream
 let items = [];
 
 app.get('/tasks', (req, res) => {
@@ -23,6 +29,11 @@ app.post('/tasks', (req, res) => {
   });
   res.redirect('/tasks');
 });
+=======
+
+app.use('/tasks', tasksRouter); 
+app.use('/', homeRouter);
+>>>>>>> Stashed changes
 
 
 // SERVER RUNNING
