@@ -1,6 +1,10 @@
 :root {
     --col-light: rgb(247, 253, 251);
+<<<<<<< Updated upstream
     --col-dark: rgb(44, 44, 44);
+=======
+    --col-dark: #343A40;
+>>>>>>> Stashed changes
     --col-accent: #f0e224;
     --col-gradient: linear-gradient(120deg, #8397b6, #294aa7);
     --font-primary: Helvetica, sans-serif;
@@ -15,11 +19,26 @@
     padding: 0;
 }
 
+<<<<<<< Updated upstream
+=======
+html {
+    height: 100%;
+    width: 100%;
+}
+
+>>>>>>> Stashed changes
 body {
     font-family: var(--font-primary);
     padding: 0 20vw;
     font-size: 1rem;
+<<<<<<< Updated upstream
     background-image: var(--col-light);
+=======
+    background-image: linear-gradient(#deeffb, #ddefff);
+    display: table; 
+    height: 100%;
+    width: 100%;
+>>>>>>> Stashed changes
 }
 
 h1 {
@@ -78,15 +97,36 @@ input[type=checkbox]:checked {
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 input[type=checkbox]:checked~span {
     text-decoration: line-through;
 }
 
+<<<<<<< Updated upstream
 =======
 input[type=checkbox]:checked~span{
     text-decoration: line-through;
 }
 
+
+>>>>>>> Stashed changes
+=======
+i {
+    position: absolute;
+    right: 15px;
+}
+
+.nav-anchor {
+    color: var(--col-light);
+}
+
+.nav-anchor:hover {
+    color: var(--col-accent);
+    font-weight: bold;
+    text-decoration: none;
+}
 
 >>>>>>> Stashed changes
 .todo-container {
@@ -106,7 +146,11 @@ input[type=checkbox]:checked~span{
     border: none;
     color: var(--col-accent);
     font-size: 1.5rem;
+<<<<<<< Updated upstream
     padding: 0.5rem;
+=======
+    padding: 0.2rem;
+>>>>>>> Stashed changes
     display: flex;
     align-items: center;
     position: relative;
@@ -127,6 +171,7 @@ input[type=checkbox]:checked~span{
     cursor: pointer;
 }
 
+<<<<<<< Updated upstream
 i {
     position: absolute;
     right: 15px;
@@ -160,6 +205,14 @@ i {
 
 
 >>>>>>> Stashed changes
+=======
+.emptyBtn {
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+
+>>>>>>> Stashed changes
 /* Responsive Design for small screens */
 
 @media (max-width: 700px) {
@@ -190,7 +243,11 @@ i {
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
 =======
 }
 >>>>>>> Stashed changes

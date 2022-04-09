@@ -1,6 +1,10 @@
 <%- include ('header'); %>
 
+<<<<<<< Updated upstream
     <h1>To Do List</h1>
+=======
+    <h1>To do:</h1>
+>>>>>>> Stashed changes
 
     <form action="/tasks" method="post">
         <input class="todo-input" id="prompt" type="text" name="newItem">
@@ -26,7 +30,11 @@
     <br>
     </div>
     <form action="/tasks/remove" method="post">
+<<<<<<< Updated upstream
         <button style="font-size: 1rem;" formaction="/tasks/remove" type="submit">Empty list</button>
+=======
+        <button class="emptyBtn" formaction="/tasks/remove" type="submit">Empty 🗑</button>
+>>>>>>> Stashed changes
     </form>
 
     <%- include ('footer'); %>

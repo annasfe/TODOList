@@ -1,7 +1,12 @@
 const express = require('express');
 const ejs = require('ejs');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const fs = require('fs');
+=======
+const tasksRouter = require('./routes/tasks');
+const homeRouter= require ('./routes/index');
+>>>>>>> Stashed changes
 =======
 const tasksRouter = require('./routes/tasks');
 const homeRouter= require ('./routes/index');
@@ -14,6 +19,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 let items = [];
 
@@ -29,6 +35,11 @@ app.post('/tasks', (req, res) => {
   });
   res.redirect('/tasks');
 });
+=======
+
+app.use('/tasks', tasksRouter); 
+app.use('/', homeRouter);
+>>>>>>> Stashed changes
 =======
 
 app.use('/tasks', tasksRouter); 
