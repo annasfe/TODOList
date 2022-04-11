@@ -1,0 +1,156 @@
+*{
+margin: 0;
+padding: 0;
+}
+
+html {
+  background-color: aliceblue;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+h1,h2 {
+  text-align: center;
+  margin: 1rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 65vh;
+    margin-top: 3rem;
+  }
+  
+  .controls {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-basis: fit-content;
+    justify-content: space-around;
+    height: 20%;
+    width: 30%;
+    margin: 1rem auto;
+
+  }
+  
+  .controls input {
+    width: 60%;
+    height: 100%;
+    border-radius: 20px;
+    border: none;
+    padding: 0 0.5rem;
+  }
+
+  .controls input:hover {
+    border: 1px solid peachpuff;
+  }
+
+  #taskButton {
+    max-width: 20%;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(129, 127, 255);
+    margin-left: -3rem;
+    color: white;
+    border-radius: 50%;
+    font-size: 20px;
+    border: none;
+    font-size: 15px;
+  }
+  
+  #tasks {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  #tasksList {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+  }
+  
+  /* .task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+   */
+  /* .task.done .task-text {
+    text-decoration: line-through;
+  }
+   */
+  /* .task-text {
+    flex: 1;
+  }
+  
+  .task-delete {
+    margin-right: 16px;
+  }
+   */
+  /* .hide {
+    display: none;
+  } */
+  .newTaskEntry {
+    display: flex;
+    flex-direction: row;
+    list-style: none ;
+    align-items: center;
+    background-color: none;
+    justify-content: center;
+
+  }
+
+
+  .inlineTaskEntry {
+      background-color: white;
+      display: grid;
+      grid-template-columns: fit-content(1000px) 2fr 1fr 1fr;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 15px;
+      border: 1px solid rgb(129, 127, 255);
+      margin: 0.2rem auto;
+      padding: 0.5rem;
+      width: fit-content;
+      justify-items: end;
+      
+  }
+  .taskText {
+    margin-right: 4rem;
+
+  }
+  .checkbox {
+    /* transform: scale(1.3);
+    border-radius: 50%; */
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+}
+
+  .crossedTask {
+      text-decoration: line-through;
+  }
+  
+  #doneTag, #toDoTag {
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    padding : 0rem 0.2rem;
+    border-radius: 5px;
+    font-size: 15px;
+
+  }
+
+  #doneTag {
+    background-color: rgb(145, 206, 145);
+  }
+
+  #toDoTag {
+    background-color: rgb(230, 203, 53);
+  }
+
+ #deleteButton:hover {
+    cursor: pointer;
+  }

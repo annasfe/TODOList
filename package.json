@@ -1,19 +1,26 @@
 {
-  "name": "todolist-class",
+  "name": "creating-a-to-do-list",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "handling todo list",
+  "main": "api.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/annasfe/TODOList.git"
+    "url": "git+https://github.com/Marielysech/toDoList.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/annasfe/TODOList/issues"
+    "url": "https://github.com/Marielysech/toDoList/issues"
   },
-  "homepage": "https://github.com/annasfe/TODOList#readme"
+  "homepage": "https://github.com/Marielysech/toDoList#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "expres": "^0.0.5",
+    "express": "^4.17.3",
+    "js": "^0.1.0",
+    "path": "^0.12.7"
+  }
 }

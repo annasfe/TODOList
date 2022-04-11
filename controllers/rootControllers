@@ -1,0 +1,10 @@
+const fs = require('fs');
+const ejs = require('ejs');
+
+
+function toDefine(req,res)  {
+    res.render('index', { name: "ML" });
+}
+
+
+module.exports = {toDefine}

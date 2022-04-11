@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List App</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    
+<div class="appContainer">
+
+    <h2>Come and create your To-do List here</h2>
+    <form action="/tasks" method="post" class="taskEntryContainer">
+        <input type="text" name="action" placeholder= "Add a new task here">
+        <button type="submit" name="button" class="submitBtn"> Add task </button>
+    </form>
+    <div class="taskListContainer">
+            <% for (let i=0; i <tasksArray.length; i++){ %>
+                <li>
+                    <span>
+                        <strong><%= tasksArray[i].action%></strong>
+                    </span>
+                    <span>
+                        <em><%= tasksArray[i].status%></em>
+                    </span>
+                    <span>
+                       ID: <%= tasksArray[i].id%>
+                    </span>
+            
+                    <form action="/tasks/remove" method="post">
+                        <button class="removeBtn" formaction="/tasks/remove" type="submit">Remove</button>
+                    </form>
+                </li>
+            <% } %>     
+        </ul>
+
+    </div>
+
+
+
+</div>
+
+
+</body>
+</html>
