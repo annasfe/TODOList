@@ -2,33 +2,29 @@ const port = process.env.PORT || 3000;
 const express = require("express");
 const app = express();
 const tasksController = require("./controllers/tasks.js");
-const router1 = require("./routes/tasks");
-const router2 = require("./routes/task");
-const router3 = require("./routes/newTask");
+const routerTasks = require("./routes/tasks");
 
 app.use(express.json());
 app.use(express.static("public"));
 
 tasks = [];
+app.use(express.urlencoded({ extended: true }));
 
-app.use;
-"/task", router2;
-app.use;
-"/tasks", router1;
-app.use;
-"/newTask", router3;
+app.use("/", routerTasks);
 
-app.get("/", tasksController.loadList);
+// app.get("/", tasksController.loadList);
 
-app.get("/tasks", tasksController.getTasks);
+routerTasks.get(tasksController.loadList);
 
-app.get("/task/:id", tasksController.getTakByID);
+routerTasks.get(tasksController.getTasks);
 
-app.post("/newTask", tasksController.newTask);
+routerTasks.get(tasksController.getTaskByID);
 
-app.put("/task/:id", tasksController.checkTask);
+routerTasks.post(tasksController.newTask);
 
-app.delete("/task/:id", tasksController.deleteTask);
+routerTasks.put(tasksController.checkTask);
+
+routerTasks.delete(tasksController.deleteTask);
 
 app.listen(port, "localhost", (err) => {
   if (err) {

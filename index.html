@@ -22,8 +22,13 @@
             class="input"
             type="text"
             placeholder="Add your tasks here..."
+            method="POST"
+            class="input"
           />
-          <button class="add-btn" type="submit">+</button>
+
+          <button formaction="/tasks/newTask" class="add-btn" type="submit">
+            +
+          </button>
         </div>
         <div class="tasks-container">
           <ul class="tasks-list">
