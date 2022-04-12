@@ -1,36 +1,82 @@
+//const { ObjectId } = require('mongodb');
+let Task = require('../models/taskModel')
 
-var task = [{id:1, text: "buy socks", completed: false}, {id:2, text:"practise with nodejs", completed:false}];
+async function createTask(req, res) {
 
-function createTask(req, res) {
-    var newTask = {id: Date.now(), text: req.body.newtask, completed: false};
-    task.push(newTask);
-    res.redirect("/");
+    // let task = new Task({
+    //     task: req.body.newtask
+    //   })
+    // try {
+    //     await task.save();
+    //     console.log("Task saved!")
+    //     res.redirect("/");
+    // }
+    // catch(err) {
+    //         console.error(err.message);
+    // } 
+    //or use create instead!
+    try{
+        const task = await Task.create({task: req.body.newtask});
+        res.redirect("/");
+    }catch(err) {
+        console.error(err.message);
+     }
+
+    // and you don't need to call save(), it is included in the create
+    
+    //  //with promise      
+    //   task.save()
+    //      .then(task => {
+    //        console.log(task)
+    //        res.redirect("/");
+    //      })
+    //      .catch(err => {
+    //        console.error(err)
+    //      })      
 };
 
 function removeTask(req, res) {
 
     var completeTask = req.body.check;
 
-    //TODO: REFACTOR - find some more clever way that the double for, maybe filter or reduce
-    if(completeTask.length) {
+    if(typeof(completeTask)=="object") {        //if more than one tasks selected, then we deal with array     
         for (var i = 0; i < completeTask.length; i++) {
-            for(var j=0; j<task.length; j++) {
-                if(parseInt(completeTask[i]) === task[j].id)
-                    task.splice(j,1);
-            }
+
+            Task.deleteOne( {_id: completeTask[i]}, function (error){
+                if (error) console.log(error);
+                res.redirect("/");
+            });
         }
     }
-
-    res.redirect("/");
+    else {
+        Task.deleteOne( {_id: completeTask}, function(error){
+            if (error) console.log(error);
+            res.redirect("/");
+        });
+    }
 };
 
 function deleteAll(req, res) {
-    task.splice(0, task.length);
-    res.redirect("/");
+    Task.deleteMany({})
+    .then(() => {
+        res.redirect("/");
+    })
+    .catch(error => {
+        console.log(error);
+        next(error);
+    });
 };
 
 function getTasks(req, res) {
-    res.render("index", { task: task});
+    Task.find().sort('task').limit(10)
+    .then(task => {
+        console.log(task);
+        res.render( 'index', {task : task});
+      })
+    .catch(error => {
+        console.log(error);
+        next(error);
+    });
 };
 
 module.exports = {getTasks, deleteAll, removeTask, createTask}

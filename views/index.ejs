@@ -19,7 +19,7 @@
     <form action="/tasks/remove" method="POST">
     <ul>
       <% for( var i = 0; i < task.length; i++){ %>
-          <li><input type="checkbox" name="check" value="<%= task[i].id %>" /> <%= task[i].text %> </li>
+          <li><input type="checkbox" name="check" value="<%= task[i]._id %>" /> <%= task[i].task %> </li>
       <% } %>
       </ul>
     <button type="submit"> Remove </button>
