@@ -1,4 +1,3 @@
-//const { ObjectId } = require('mongodb');
 let Task = require('../models/taskModel')
 
 async function createTask(req, res) {
@@ -9,16 +8,7 @@ async function createTask(req, res) {
     }catch(err) {
         console.error(err.message);
      }
-    
-    //  //with promise      
-    //   task.save()
-    //      .then(task => {
-    //        console.log(task)
-    //        res.redirect("/");
-    //      })
-    //      .catch(err => {
-    //        console.error(err)
-    //      })      
+         
 };
 
 function removeTask(req, res) {
