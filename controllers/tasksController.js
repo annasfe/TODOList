@@ -3,26 +3,12 @@ let Task = require('../models/taskModel')
 
 async function createTask(req, res) {
 
-    // let task = new Task({
-    //     task: req.body.newtask
-    //   })
-    // try {
-    //     await task.save();
-    //     console.log("Task saved!")
-    //     res.redirect("/");
-    // }
-    // catch(err) {
-    //         console.error(err.message);
-    // } 
-    //or use create instead!
     try{
         const task = await Task.create({task: req.body.newtask});
         res.redirect("/");
     }catch(err) {
         console.error(err.message);
      }
-
-    // and you don't need to call save(), it is included in the create
     
     //  //with promise      
     //   task.save()
