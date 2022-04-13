@@ -17,30 +17,25 @@
             <div class="add-task">
                 <label for="task"></label>
                 <input type="text" name="task" placeholder="your task here">
-                <button onclick="createNewTask()">+</button>
+                <button id="new-task">+</button>
             </div>
-        <div class="task-custom">
-            <label for="selectcategory">
-                <select name="selectcategory">
-                    <% for(var i = 0; i < categoriesArr.length; i++){ %>
-             
-                        <option> <%= categoriesArr[i] %> </option>
+            <div class="task-custom">
+                <label for="selectcategory">
+                    <select name="selectcategory">
+                        <% for(var i = 0; i < categoriesArr.length; i++){ %>
+                                <option> <%= categoriesArr[i] %> </option>
                 
-                    <% } %>
-                </select>
-            </label>
-        </form>
-        <form action="/tasks/clearall" method="POST"> 
-            <button onclick="emptyList()">delete all tasks</button>    
+                         <% } %>
+                    </select>
+                </label>
             </form>
-
+             <form method="post" action="clearall">
+                <button method="POST" formaction="/tasks/clearall" id="delete-all">delete all tasks</button>    
+            </form>
             <form action="/tasks/clearcompleted" method="POST"> 
-            <button method="submit">delete completed tasks</button>
-             </form>
-        </div>
-
-
-    
+                 <button method="submit">delete completed tasks</button>
+            </form>
+            </div>
     </div>
 
 <div class="list">
@@ -52,7 +47,7 @@
                 <span style= "color: #A3F79E;"" > <%= allTheTasks[i].emoji %> </span> 
                 <%= allTheTasks[i].content %> 
                     
-                    <input type="checkbox" name="checkCompleted" value=" <%=allTheTasks[i].content%>"  >
+                    <input onchange="setCompleted()" type="checkbox" name="check" value=" <%=allTheTasks[i].content%>"  >
                     
             </li>
             

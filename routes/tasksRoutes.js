@@ -8,12 +8,18 @@ router.post('/', tasksController.createNewTask);
 
 router.post('/clearall', tasksController.emptyList);
 
-//todo ---> router.post('/clearcompleted', tasksController.deleteCompleted);
+//router.post('/clearcompleted', tasksController.deleteCompleted);
+router.get('/pending', tasksController.getTaskByStatus);
 
-router.get('/:id', tasksController.getTaskById);
-router.put('/:id', tasksController.modifyTask);
-router.delete('/:id', tasksController.emptyList);
+router.get('/:category', tasksController.getTaskByCategory);
 
+
+//TODO*******************************//
+//router.put('/', tasksController.setCompleted);
+
+//router.put('/:id', tasksController.modifyTask);
+//router.delete('/:id', tasksController.emptyList);
+//***************************************** */
 
 
 

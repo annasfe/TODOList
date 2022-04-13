@@ -4,123 +4,150 @@ const bodyParser = require('body-parser');
 const app = express();
 const fs = require('fs');
 
+
+const taskModel = require("../models/taskModel");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"))
 
 const ejs = require('ejs');
+
 app.use(express.json());
 app.set('view engine', 'ejs');
 
 
-
-//task creator 
-class TaskCreator {
-    constructor (id="", content="This is a task", category="-", status="to do", emoji){
-        this.id = id;
-        this.content = content;
-        this.category = category;
-        this.status = status;
-        this.emoji = emoji;
-    }
-}
+// const completedTasks = [];  ---> I think i dont need this anymore
 
 
-//create an object from tasks
-//const allTasks = Object.assign({}, ...allTheTasks);
-//tasks array
-const allTheTasks = [];
-// const completedTasks = [];
-
-
-function getAllTheTasks (req, res) {
-    res.render('index', {allTheTasks: allTheTasks, categoriesArr: categoriesArr});
+//Get all tasks
+async function getAllTheTasks (req, res) {
+    try {
+    const allTheTasks = await taskModel.find({});
     console.log(allTheTasks);
-}
-
-function createNewTask (req, res) {
-    let newId = Date.now()%10000;
-    const category = addEmo(categories, req.body.selectcategory);
-    if (!req.body.task == "") {
-    const task = new TaskCreator(newId, req.body.task, req.body.selectcategory, req.body.status, category);
-    allTheTasks.push(task);
+    res.render('index', {allTheTasks: allTheTasks, categoriesArr: categoriesArr});
+    } catch (err) {
+        console.log(err)
+        }
+    };
+  
+ //create new  
+async function createNewTask (req, res) {
+    try {
+    const task = await taskModel.create({
+        content: req.body.task,
+        category: req.body.selectcategory,
+        emoji: addEmo(categories, req.body.selectcategory)
+    })
+    
+    console.log(task);
     res.redirect('/tasks');
-}
+} catch (err) {
+    console.log(err)
     
 }
 
-
-
-function getTaskById (req, res) {
-    
-    const reqTask = allTheTasks.filter(item => item.id === parseInt(req.params.id));
-    if(reqTask != false) {res.render('task-details', {task: reqTask[0], taskId: req.params.id, categoriesArr: categoriesArr});}
-    else {res.render('no-task-id', {taskId: req.params.id, categoriesArr: categoriesArr});}
-    
 }
+    
+//get tasks by category
+async function getTaskByCategory (req, res) {
+        try {
+        const allTheTasks = await taskModel.find({category: req.params.category});
+        console.log(allTheTasks);
+        res.render('index', {allTheTasks: allTheTasks, categoriesArr: categoriesArr});
+        } catch (err) {
+            console.log(err)
+            }
+        };
 
 
-function modifyTask (req, res) {
-    reqTask = allTheTasks.filter(item => item.id === parseInt(req.params.id));
-    if(reqTask != false) {
+
+//TODO get by status
+async function getTaskByStatus (req, res) {
+    try {
+    const allTheTasks = await taskModel.find({completed: false});
+    console.log(allTheTasks);
+    res.render('index', {allTheTasks: allTheTasks, categoriesArr: categoriesArr});
+    } catch (err) {
+        console.log(err)
+        }
+    };
 
 
+
+
+    //TODO 
+    // async function setCompleted (req, res) {
+    //     fetch ("/tasks", {
+    //         method: "PUT",
+    //         headers: {'content-type': 'application/json'}, 
+    //         body: JSON.stringify({
+    //             completed: true
+    //         })
+    //     })
+    //     .then(data => console.log(data))
+    //     .then(res => res.redirected('/tasks'))
        
-       reqTask[0].content = req.body.task;
-       reqTask[0].category = req.body.selectcategory;
-       reqTask[0].status = req.body.status;
-       res.send(`Task ${req.params.id} changed to: (JSON.stringify(${reqTask[0]},null,2)`); 
-    } else {res.render('no-task-id', {taskId: req.params.id, categoriesArr: categoriesArr});}
- 
-    
-    
-    
-    /*const reqTask = allTheTasks.filter(item => item.id === parseInt(req.params.id));
-    if(reqTask != false) {
-       reqTask[0].content = req.body.task;
-       reqTask[0].category = req.body.selectcategory;
-       reqTask[0].status = req.body.status;
-       res.send(`Task ${req.params.id} changed to: (JSON.stringify(${reqTask[0]},null,2)`);
-    } else {res.send(`There is not a task with ${req.params.id} id.`);}
-  */
-}
+
+    //     };
 
 
-function emptyList (req, res) {
-    if (allTheTasks.length >= 1) {
-    allTheTasks.splice(0, allTheTasks.length);
-    res.redirect('/tasks');
-    } 
+
+
+
+
+
+    //DElete all the tasks
+async function emptyList (req, res) {
+    taskModel.deleteMany()
+    .then(()=>{
+        res.redirect('/tasks');
+    })
+    .catch((err) => {
+        console.log(err);
+    })   
 }
 
 
 
 // TO DO: delete completed tasks
-/*
-function deleteCompleted (req, res) {
-    var completeTask = req.body.check;
-    
 
-    res.send(console.log(completeTask));
-}
-*/
+// function deleteCompleted (req, res) {
+//     var completedTasks = req.body.checkCompleted;
+//     if (typeof completedTasks === 'string') {
+        
+//         res.redirect('/tasks');
+
+//     } else if (typeof completedTasks === 'array') {
+//         for (let i of completedTasks) {
+//             allTheTasks.splice(i, 1)
+//             res.redirect('/tasks');
+//         }
+//     }
+    
+//     console.log(completedTasks.length);
+  
+//        res.redirect('/tasks');
+    
+    
+// }
+
 
 
 
 ///////cat object //****************************************** */
 
 const categories = {
-    Category: "",
-    Home: '\u{1F3E0}',
-    Important: '\u{2757}',
-    Grocery: '\u{1F34E}',
-    Care: '\u{1F493}',
-    Pet: '\u{1F436}', 
-    Work: '\u{1F6A7}',
-    Birthday: '\u{1F389}',
-    Healt: '\u{1F49A}',
-    Urgent: '\u{1F4A5}',
-    Pinned: '\u{1F4CC}',
-    Others: '\u{1F47E}'
+    category: "",
+    home: '\u{1F3E0}',
+    important: '\u{2757}',
+    grocery: '\u{1F34E}',
+    care: '\u{1F493}',
+    pet: '\u{1F436}', 
+    work: '\u{1F6A7}',
+    birthday: '\u{1F389}',
+    healt: '\u{1F49A}',
+    urgent: '\u{1F4A5}',
+    pinned: '\u{1F4CC}',
+    others: '\u{1F47E}'
 
 }
 
@@ -139,4 +166,4 @@ function addEmo(obj, category) {
 
 
 
-module.exports = {getAllTheTasks, createNewTask, getTaskById, modifyTask, emptyList};
+module.exports = {getAllTheTasks, createNewTask, getTaskByCategory, getTaskByStatus, emptyList};
